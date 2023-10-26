@@ -18,14 +18,22 @@ class User:
         return user_infos
     
     def enroll(self):
-        if self.is_rewards_member == True:
+        if self.is_rewards_member:
             print(f"User already a member.")
         else:
             self.is_rewards_member = True
             self.gold_card_points = 200
+
+    def spend_points(self, amount):
+        if amount < self.gold_card_points:
+            self.gold_card_points -= amount
+        else:
+            print(f"Not enough points to spend at this time!")
 
 
 user_1 = User("Rassim", "Benmhamed", "rassimb@ninja.com", 35)
 print(user_1.display_user_infos())
 user_1.enroll()
 print(user_1.is_rewards_member)
+user_1.spend_points(100)
+print(f"You have {user_1.gold_card_points} points left and available to use.")
